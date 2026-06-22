@@ -2,7 +2,7 @@
 
 //! This crate provides well-known languages.
 //!
-//! ```edition2024
+//! ```rust
 //! use known_languages::*;
 //! ```
 
