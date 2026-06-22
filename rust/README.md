@@ -20,8 +20,8 @@
 
 ## ✨ Features
 
-- Exports an enum for all well-known languages.
-- Plays nice with others: interoperates with [Serde] and [Clap].
+- Exports an enum for all well-known human languages.
+- Plays nice with others: interoperates with [Borsh], [BSON], and [Serde].
 - 100% pure and safe Rust with minimal dependencies and no bloat.
 - Supports `no_std` environments from the get-go.
 - Supports opting out of any feature using comprehensive [feature flags].
@@ -78,6 +78,17 @@ use known_languages;
 | `bson`       | 3.1     | Implements `From<T> for bson::Bson`
 | `serde`      | 1.0     | Derives `serde::{Serialize, Deserialize}`
 
+### See Also
+
+| Package | Crate | Docs |
+| :------ | :---- | :--- |
+| [known-errors](https://github.com/it-is-known/known-errors) | [![Package](https://img.shields.io/crates/v/known-errors)](https://crates.io/crates/known-errors) | [![Documentation](https://img.shields.io/docsrs/known-errors?label=docs.rs)](https://docs.rs/known-errors) |
+| [known-facts](https://github.com/it-is-known/known-facts) | [![Package](https://img.shields.io/crates/v/known-facts)](https://crates.io/crates/known-facts) | [![Documentation](https://img.shields.io/docsrs/known-facts?label=docs.rs)](https://docs.rs/known-facts) |
+| [known-languages](https://github.com/it-is-known/known-languages) | [![Package](https://img.shields.io/crates/v/known-languages)](https://crates.io/crates/known-languages) | [![Documentation](https://img.shields.io/docsrs/known-languages?label=docs.rs)](https://docs.rs/known-languages) |
+| [known-paths](https://github.com/it-is-known/known-paths) | [![Package](https://img.shields.io/crates/v/known-paths)](https://crates.io/crates/known-paths) | [![Documentation](https://img.shields.io/docsrs/known-paths?label=docs.rs)](https://docs.rs/known-paths) |
+| [known-schemes](https://github.com/it-is-known/known-schemes) | [![Package](https://img.shields.io/crates/v/known-schemes)](https://crates.io/crates/known-schemes) | [![Documentation](https://img.shields.io/docsrs/known-schemes?label=docs.rs)](https://docs.rs/known-schemes) |
+| [known-types](https://github.com/it-is-known/known-types) | [![Package](https://img.shields.io/crates/v/known-types)](https://crates.io/crates/known-types) | [![Documentation](https://img.shields.io/docsrs/known-types?label=docs.rs)](https://docs.rs/known-types) |
+
 ## 👨‍💻 Development
 
 ```bash
@@ -92,6 +103,8 @@ git clone https://github.com/it-is-known/known-languages.git
 [![Share on Facebook](https://img.shields.io/badge/share%20on-fb-1976D2?logo=facebook)](https://www.facebook.com/sharer/sharer.php?u=https://github.com/it-is-known/known-languages)
 [![Share on LinkedIn](https://img.shields.io/badge/share%20on-linkedin-3949AB?logo=linkedin)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/it-is-known/known-languages)
 
+[Borsh]: https://crates.io/crates/borsh
+[BSON]: https://crates.io/crates/bson
 [Clap]: https://crates.io/crates/clap
 [Rust]: https://rust-lang.org
 [Serde]: https://crates.io/crates/serde
