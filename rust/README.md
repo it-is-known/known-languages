@@ -22,7 +22,7 @@
 
 - Exports an enum for all well-known human languages.
 - Plays nice with others: interoperates with [Borsh], [BSON], and [Serde].
-- 100% pure and safe Rust with minimal dependencies and no bloat.
+- 100% pure and safe Rust with zero dependencies and no bloat.
 - Supports `no_std` environments from the get-go.
 - Supports opting out of any feature using comprehensive [feature flags].
 - Adheres to the Rust API Guidelines in its [naming conventions].
