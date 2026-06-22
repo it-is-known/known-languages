@@ -1,0 +1,31 @@
+# See: https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package]
+name = "known-languages"
+version = "0.0.0"
+authors = ["Arto Bendiken"]
+edition = "2024"
+rust-version = "1.85"
+description = "Well-known languages."
+#documentation = "https://docs.rs/known-languages"
+readme = true
+homepage = "https://github.com/it-is-known/known-languages"
+repository = "https://github.com/it-is-known/known-languages"
+license = "Unlicense"
+keywords = ["known", "language"]
+categories = ["rust-patterns", "no-std"]
+publish = true
+
+[features]
+default = ["all", "std"]
+alloc = []
+std = ["alloc", "serde?/std"]
+all = []
+unstable = []
+
+[dev-dependencies]
+
+[dependencies]
+serde = { version = "1", default-features = false, features = [
+    "derive",
+], optional = true }
