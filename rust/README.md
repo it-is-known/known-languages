@@ -68,6 +68,16 @@ use known_languages;
 
 [docs.rs/known-languages](https://docs.rs/known-languages)
 
+### Feature Flags
+
+#### Interoperability
+
+| Feature      | Version | Summary |
+| :----------- | :------ | :------ |
+| `borsh`      | 1.6     | Derives `borsh::{BorshSerialize, BorshDeserialize}`
+| `bson`       | 3.1     | Implements `From<T> for bson::Bson`
+| `serde`      | 1.0     | Derives `serde::{Serialize, Deserialize}`
+
 ## 👨‍💻 Development
 
 ```bash

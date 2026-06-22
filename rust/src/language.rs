@@ -4,11 +4,16 @@ use alloc::{fmt, string::String};
 use core::str::FromStr;
 
 /// An enumerated language.
-#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[cfg_attr(
+    feature = "borsh",
+    derive(borsh::BorshSerialize, borsh::BorshDeserialize)
+)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[cfg_attr(feature = "serde", serde(rename_all = "kebab-case"))]
 #[non_exhaustive]
 pub enum Language {
+    #[default]
     English,
     Other(String),
 }
@@ -43,5 +48,18 @@ impl FromStr for Language {
 impl fmt::Display for Language {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{}", self.as_str())
+    }
+}
+
+#[cfg(feature = "alloc")]
+impl TryFrom<serde_json::Value> for Language {
+    type Error = ();
+
+    fn try_from(input: serde_json::Value) -> Result<Self, Self::Error> {
+        use serde_json::Value;
+        match input {
+            Value::String(input) => Ok(input.parse().unwrap_or_else(|_| Self::Other(input))),
+            _ => Err(()),
+        }
     }
 }
