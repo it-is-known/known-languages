@@ -3,7 +3,10 @@
 use core::str::FromStr;
 
 #[cfg(feature = "alloc")]
-use alloc::string::String;
+use alloc::{
+    borrow::Cow,
+    string::{String, ToString},
+};
 
 /// An enumerated language.
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -15,6 +18,7 @@ use alloc::string::String;
 #[cfg_attr(feature = "serde", serde(rename_all = "kebab-case"))]
 #[non_exhaustive]
 pub enum Language {
+    /// English ("en")
     #[default]
     English,
 
@@ -68,11 +72,6 @@ impl FromStr for Language {
         use Language::*;
         Ok(match input {
             "en" => English,
-
-            #[cfg(feature = "alloc")]
-            input => Other(input.into()),
-
-            #[cfg(not(feature = "alloc"))]
             _ => return Err(()),
         })
     }
@@ -81,6 +80,51 @@ impl FromStr for Language {
 impl core::fmt::Display for Language {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         write!(f, "{}", self.as_str())
+    }
+}
+
+impl AsRef<str> for Language {
+    fn as_ref(&self) -> &str {
+        self.as_str()
+    }
+}
+
+impl<T> From<&T> for Language
+where
+    T: Clone + Into<Self>,
+{
+    fn from(t: &T) -> Self {
+        t.clone().into()
+    }
+}
+
+impl From<&str> for Language {
+    fn from(input: &str) -> Self {
+        match input.parse() {
+            Ok(output) => output,
+
+            #[cfg(feature = "alloc")]
+            Err(_) => Self::Other(input.into()),
+
+            #[cfg(not(feature = "alloc"))]
+            Err(_) => unimplemented!("unknown language: {}", input),
+        }
+    }
+}
+
+#[cfg(feature = "alloc")]
+impl<'a> From<Cow<'a, str>> for Language {
+    fn from(input: Cow<'a, str>) -> Self {
+        input
+            .parse()
+            .unwrap_or_else(|_| Self::Other(input.into_owned()))
+    }
+}
+
+#[cfg(feature = "alloc")]
+impl From<String> for Language {
+    fn from(input: String) -> Self {
+        input.parse().unwrap_or_else(|_| Self::Other(input))
     }
 }
 
@@ -94,5 +138,18 @@ impl TryFrom<serde_json::Value> for Language {
             Value::String(input) => Ok(input.parse().unwrap_or_else(|_| Self::Other(input))),
             _ => Err(()),
         }
+    }
+}
+
+impl From<&'static Language> for &str {
+    fn from(input: &'static Language) -> Self {
+        input.as_str()
+    }
+}
+
+#[cfg(feature = "alloc")]
+impl From<Language> for String {
+    fn from(input: Language) -> Self {
+        input.to_string()
     }
 }
