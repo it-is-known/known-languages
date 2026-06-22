@@ -85,5 +85,5 @@ git clone https://github.com/it-is-known/known-languages.git
 [Clap]: https://crates.io/crates/clap
 [Rust]: https://rust-lang.org
 [Serde]: https://crates.io/crates/serde
-[feature flags]: https://github.com/it-is-known/known-languages/blob/master/lib/known-languages/Cargo.toml
+[feature flags]: https://github.com/it-is-known/known-languages/blob/master/rust/Cargo.toml
 [naming conventions]: https://rust-lang.github.io/api-guidelines/naming.html
