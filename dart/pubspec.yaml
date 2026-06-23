@@ -1,0 +1,14 @@
+# See: https://dart.dev/tools/pub/pubspec
+---
+name: known_languages
+version: 0.0.1
+description: >-
+  Well-known languages.
+homepage: https://github.com/it-is-known
+repository: https://github.com/it-is-known/known-languages
+issue_tracker: https://github.com/it-is-known/known-languages/issues
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.25.0
+environment:
+  sdk: ^3.11.0
