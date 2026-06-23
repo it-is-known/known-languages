@@ -2,6 +2,7 @@
 
 [![License](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](https://unlicense.org)
 [![Package on Crates.io](https://img.shields.io/crates/v/known-languages)](https://crates.io/crates/known-languages)
+[![Package on Pub.dev](https://img.shields.io/pub/v/known_languages)](https://pub.dev/packages/known_languages)
 [![Package on PyPI](https://img.shields.io/pypi/v/known-languages)](https://pypi.org/project/known-languages)
 [![Package on RubyGems](https://img.shields.io/gem/v/known-languages)](https://rubygems.org/gems/known-languages)
 
@@ -9,19 +10,26 @@ Well-known languages.
 
 ## ⬇️ Installation
 
-### Installation from Crates.io
+### Installation from [Crates.io]
 
 ```bash
 cargo add known-languages
 ```
 
-### Installation from PyPI
+### Installation from [Pub.dev]
+
+```bash
+dart pub add known_languages
+flutter pub add known_languages
+```
+
+### Installation from [PyPI]
 
 ```bash
 pip install -U known-languages
 ```
 
-### Installation from RubyGems
+### Installation from [RubyGems]
 
 ```bash
 gem install known-languages
@@ -41,3 +49,8 @@ git clone https://github.com/it-is-known/known-languages.git
 [![Share on Hacker News](https://img.shields.io/badge/share%20on-hn-orange?logo=ycombinator)](https://news.ycombinator.com/submitlink?u=https://github.com/it-is-known/known-languages&t=Known%20Languages)
 [![Share on Facebook](https://img.shields.io/badge/share%20on-fb-1976D2?logo=facebook)](https://www.facebook.com/sharer/sharer.php?u=https://github.com/it-is-known/known-languages)
 [![Share on LinkedIn](https://img.shields.io/badge/share%20on-linkedin-3949AB?logo=linkedin)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/it-is-known/known-languages)
+
+[Crates.io]: https://crates.io/crates/known-languages
+[Pub.dev]: https://pub.dev/packages/known_languages
+[PyPI]: https://pypi.org/project/known-languages
+[RubyGems]: https://rubygems.org/gems/known-languages
