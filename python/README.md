@@ -1,7 +1,7 @@
 # Known Languages for Python
 
 [![License](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](https://unlicense.org)
-[![Compatibility](https://img.shields.io/badge/python-3.10%2B-blue)](https://endoflife.date/python)
+[![Compatibility](https://img.shields.io/badge/python-3.11%2B-blue)](https://endoflife.date/python)
 [![Package](https://img.shields.io/pypi/v/known-languages)](https://pypi.org/project/known-languages/)
 
 Well-known languages for Python.
