@@ -1,0 +1,34 @@
+# This is free and unencumbered software released into the public domain.
+
+module Known; end
+module Known::Languages; end
+
+##
+# A language (based on ISO 639-1).
+class Known::Languages::Language
+  ##
+  # The language code (ISO 639-1).
+  #
+  # @return [Symbol]
+  attr_reader :code
+
+  private_class_method :new
+
+  ##
+  # Defines a new language.
+  #
+  # @param code [#to_sym] The language code (ISO 639-1).
+  def initialize(code)
+    @code = code.to_sym
+    self.freeze
+  end
+
+  {%- for language in languages %}
+
+  ##
+  # {{ language.name }} ("{{ language.code }}" in ISO 639-1)
+  #
+  # @return [Language]
+  {{ language.name | upcase }} = new(:{{ language.code }})
+  {%- endfor %}
+end # Known::Languages::Language

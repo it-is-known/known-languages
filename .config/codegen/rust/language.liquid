@@ -14,40 +14,14 @@ use alloc::{
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[non_exhaustive]
 pub enum Language {
+    {%- for language in languages %}
 
-    /// Arabic ("ar" in ISO 639-1)
-    Arabic,
-
-    /// Bengali ("bn" in ISO 639-1)
-    Bengali,
-
-    /// English ("en" in ISO 639-1)
+    /// {{ language.name }} ("{{ language.code }}" in ISO 639-1)
+    {%- if language.code == "en" %}
     #[default]
-    English,
-
-    /// Esperanto ("eo" in ISO 639-1)
-    Esperanto,
-
-    /// Spanish ("es" in ISO 639-1)
-    Spanish,
-
-    /// French ("fr" in ISO 639-1)
-    French,
-
-    /// Hindi ("hi" in ISO 639-1)
-    Hindi,
-
-    /// Indonesian ("id" in ISO 639-1)
-    Indonesian,
-
-    /// Portuguese ("pt" in ISO 639-1)
-    Portuguese,
-
-    /// Urdu ("ur" in ISO 639-1)
-    Urdu,
-
-    /// Chinese ("zh" in ISO 639-1)
-    Chinese,
+    {%- endif %}
+    {{ language.name | capitalize }},
+    {%- endfor %}
 
     #[cfg(feature = "alloc")]
     Other(String),
@@ -59,17 +33,9 @@ impl Language {
     pub fn as_str(&self) -> &str {
         use Language::*;
         match self {
-            Arabic => "ar",
-            Bengali => "bn",
-            English => "en",
-            Esperanto => "eo",
-            Spanish => "es",
-            French => "fr",
-            Hindi => "hi",
-            Indonesian => "id",
-            Portuguese => "pt",
-            Urdu => "ur",
-            Chinese => "zh",
+            {%- for language in languages %}
+            {{ language.name | capitalize }} => "{{ language.code }}",
+            {%- endfor %}
 
             #[cfg(feature = "alloc")]
             Other(input) => input.as_str(),
@@ -108,17 +74,9 @@ impl FromStr for Language {
     fn from_str(input: &str) -> Result<Self, Self::Err> {
         use Language::*;
         Ok(match input {
-            "ar" => Arabic,
-            "bn" => Bengali,
-            "en" => English,
-            "eo" => Esperanto,
-            "es" => Spanish,
-            "fr" => French,
-            "hi" => Hindi,
-            "id" => Indonesian,
-            "pt" => Portuguese,
-            "ur" => Urdu,
-            "zh" => Chinese,
+            {%- for language in languages %}
+            "{{ language.code }}" => {{ language.name | capitalize }},
+            {%- endfor %}
             _ => return Err(()),
         })
     }

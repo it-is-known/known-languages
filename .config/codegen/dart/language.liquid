@@ -1,0 +1,24 @@
+// This is free and unencumbered software released into the public domain.
+
+/// A language (based on ISO 639-1).
+enum Language {
+  {%- for language in languages %}
+
+  /// {{ language.name }} ("{{ language.code }}" in ISO 639-1)
+  {{ language.name | camelcase }}("{{ language.code }}"),
+  {%- endfor %};
+
+  /// The language code (ISO 639-1).
+  final String code;
+
+  /// Defines a new language.
+  const Language(this.code);
+
+  /// Creates a [Language] from the given ISO 639-1 code.
+  factory Language.fromCode(String code) {
+    return Language.values.firstWhere(
+      (lang) => lang.code == code,
+      orElse: () => throw ArgumentError('Unknown ISO-639 code: $code'),
+    );
+  }
+}

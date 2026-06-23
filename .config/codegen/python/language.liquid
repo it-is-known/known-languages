@@ -1,0 +1,12 @@
+# This is free and unencumbered software released into the public domain.
+
+from enum import StrEnum
+
+# A language (based on ISO 639-1).
+class Language(StrEnum):
+    """A language"""
+    {%- for language in languages %}
+
+    {{ language.name | upcase }} = "{{ language.code }}"
+    """{{ language.name }} ("{{ language.code }}" in ISO 639-1)"""
+    {%- endfor %}
