@@ -46,14 +46,14 @@ Enable all default features:
 
 ```toml
 [dependencies]
-known-languages = "0.0"
+known-languages = "0"
 ```
 
 Enable only specific features:
 
 ```toml
 [dependencies]
-known-languages = { version = "0.0", default-features = false, features = ["serde"] }
+known-languages = { version = "0", default-features = false, features = ["serde"] }
 ```
 
 ## 👉 Examples
@@ -82,6 +82,7 @@ use known_languages::Language;
 
 | Package | Crate | Docs
 | :------ | :---- | :---
+| [known-countries](https://github.com/it-is-known/known-countries) | [![Package](https://img.shields.io/crates/v/known-countries)](https://crates.io/crates/known-countries) | [![Documentation](https://img.shields.io/docsrs/known-countries?label=docs.rs)](https://docs.rs/known-countries)
 | [known-errors](https://github.com/it-is-known/known-errors) | [![Package](https://img.shields.io/crates/v/known-errors)](https://crates.io/crates/known-errors) | [![Documentation](https://img.shields.io/docsrs/known-errors?label=docs.rs)](https://docs.rs/known-errors)
 | [known-languages](https://github.com/it-is-known/known-languages) | [![Package](https://img.shields.io/crates/v/known-languages)](https://crates.io/crates/known-languages) | [![Documentation](https://img.shields.io/docsrs/known-languages?label=docs.rs)](https://docs.rs/known-languages)
 | [known-paths](https://github.com/it-is-known/known-paths) | [![Package](https://img.shields.io/crates/v/known-paths)](https://crates.io/crates/known-paths) | [![Documentation](https://img.shields.io/docsrs/known-paths?label=docs.rs)](https://docs.rs/known-paths)

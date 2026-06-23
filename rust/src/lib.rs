@@ -3,7 +3,7 @@
 //! This crate provides well-known languages.
 //!
 //! ```rust
-//! use known_languages::*;
+//! use known_languages::Language;
 //! ```
 
 #![no_std]

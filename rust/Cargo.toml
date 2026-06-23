@@ -12,7 +12,7 @@ readme = true
 homepage = "https://github.com/it-is-known/known-languages"
 repository = "https://github.com/it-is-known/known-languages"
 license = "Unlicense"
-keywords = ["known", "language"]
+keywords = ["known", "language", "data"]
 categories = ["rust-patterns", "no-std"]
 publish = true
 
