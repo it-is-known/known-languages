@@ -1,15 +1,8 @@
 require 'csv'
-require 'liquid'
-require 'lvr/template/filters'
-#require 'tilt'
-
-HEADER = File.open('UNLICENSE').readlines.first
-LIQUID_ENV = Liquid::Environment.new.register_filters([Lvr::Template::Filters])
+require 'lvr'
 
 Language = Data.define(:code, :name) do
-  def to_liquid
-    { 'code' => code, 'name' => name }
-  end
+  def to_liquid = self.to_h.transform_keys(&:to_s)
 end
 
 task :default => %w[dart python ruby rust]
@@ -54,21 +47,13 @@ file 'rust/src/language.rs' => 'data/languages.csv' do |t|
   File.open(t.name, 'w') { it.puts codegen_languages(:rust) } # TODO: `rustfmt`
 end
 
-def codegen_readme(target)
-  languages = load_languages()
-  template = load_template(".config/codegen/#{target}/README.md.liquid")
-  template.render!({ 'languages' => languages },
-    { error_mode: :strict, strict_variables: true, strict_filters: true })
-end
+def codegen_readme(target) = Lvr::Template
+  .load(".config/codegen/#{target}/README.md.liquid")
+  .render(languages: load_languages())
 
-def codegen_languages(target)
-  languages = load_languages()
-  template = load_template(".config/codegen/#{target}/language.liquid")
-  template.render!({ 'languages' => languages },
-    { error_mode: :strict, strict_variables: true, strict_filters: true })
-end
-
-def load_template(path) = Liquid::Template.new(environment: LIQUID_ENV).parse(File.read(path))
+def codegen_languages(target) = Lvr::Template
+  .load(".config/codegen/#{target}/language.liquid")
+  .render(languages: load_languages())
 
 def load_languages() = parse_csv('data/languages.csv')
   .map { |(code, name)| Language.new(code, name) }
