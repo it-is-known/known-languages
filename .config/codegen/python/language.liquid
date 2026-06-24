@@ -7,6 +7,6 @@ class Language(StrEnum):
     """A language"""
     {%- for language in languages %}
 
-    {{ language.name | upcase }} = "{{ language.code }}"
+    {{ language.name | constcase }} = "{{ language.code }}"
     """{{ language.name }} ("{{ language.code }}" in ISO 639-1)"""
     {%- endfor %}

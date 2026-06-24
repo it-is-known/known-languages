@@ -20,7 +20,7 @@ pub enum Language {
     {%- if language.code == "en" %}
     #[default]
     {%- endif %}
-    {{ language.name | capitalize }},
+    {{ language.name | pascalcase }},
     {%- endfor %}
 
     #[cfg(feature = "alloc")]
@@ -34,7 +34,7 @@ impl Language {
         use Language::*;
         match self {
             {%- for language in languages %}
-            {{ language.name | capitalize }} => "{{ language.code }}",
+            {{ language.name | pascalcase }} => "{{ language.code }}",
             {%- endfor %}
 
             #[cfg(feature = "alloc")]
@@ -75,7 +75,7 @@ impl FromStr for Language {
         use Language::*;
         Ok(match input {
             {%- for language in languages %}
-            "{{ language.code }}" => {{ language.name | capitalize }},
+            "{{ language.code }}" => {{ language.name | pascalcase }},
             {%- endfor %}
             _ => return Err(()),
         })

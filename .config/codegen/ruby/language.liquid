@@ -29,6 +29,6 @@ class Known::Languages::Language
   # {{ language.name }} ("{{ language.code }}" in ISO 639-1)
   #
   # @return [Language]
-  {{ language.name | upcase }} = new(:{{ language.code }})
+  {{ language.name | constcase }} = new(:{{ language.code }})
   {%- endfor %}
 end # Known::Languages::Language
