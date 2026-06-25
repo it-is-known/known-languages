@@ -6,6 +6,7 @@ Language = Data.define(:code, :name) do
 end
 
 codegen = ->(t, _) { Lvr.codegen(t.name, t.source, languages: load_languages) }
+copy = ->(t, _) { cp t.source, t.name }
 
 task :default => %w[dart python ruby rust]
 
@@ -20,6 +21,8 @@ file 'python/src/known_languages/__init__.py' => %w[.config/codegen/python/langu
 task ruby: %w[ruby/README.md ruby/lib/known/languages.rb]
 file 'ruby/README.md' => %w[.config/codegen/ruby/README.md.liquid data/languages.csv], &codegen
 file 'ruby/lib/known/languages.rb' => %w[.config/codegen/ruby/language.liquid data/languages.csv], &codegen
+file 'ruby/CHANGES.md' => %w[CHANGES.md], &copy
+file 'ruby/VERSION' => %w[VERSION], &copy
 
 task rust: %w[rust/README.md rust/src/language.rs]
 file 'rust/README.md' => %w[.config/codegen/rust/README.md.liquid data/languages.csv], &codegen
