@@ -7,10 +7,11 @@ Language = Data.define(:code, :name) do
   def to_liquid = self.to_h.transform_keys(&:to_s)
 end
 
-codegen = ->(t, _) { Lvr.codegen(t.name, t.source, languages: load_languages) }
+codegen = ->(t, _) { Lvr.codegen(t.name, t.source, **CONTEXT) }
 copy = ->(t, _) { cp t.source, t.name }
 
-task :default => %w[dart python ruby rust]
+task :default => %w[README.md dart python ruby rust]
+file 'README.md' => %w[.config/codegen/README.md.liquid], &codegen
 
 task dart: %w[dart/README.md dart/lib/src/language.dart]
 file 'dart/README.md' => %w[.config/codegen/dart/README.md.liquid data/languages.csv], &codegen
@@ -30,7 +31,18 @@ task rust: %w[rust/README.md rust/src/language.rs]
 file 'rust/README.md' => %w[.config/codegen/rust/README.md.liquid data/languages.csv], &codegen
 file 'rust/src/language.rs' => %w[.config/codegen/rust/language.liquid data/languages.csv], &codegen
 
-def load_languages() = parse_csv('data/languages.csv')
-  .map { |(code, name)| Language.new(code, name) }
-
+def load_languages = parse_csv('data/languages.csv').map { Language.new(*it) }
 def parse_csv(path) = CSV.parse(File.read(path), headers: false)
+
+CONTEXT = {
+  project: {
+    title: "Known Languages",
+  },
+  github: {
+    repository: {
+      link: 'https://github.com/it-is-known/known-languages',
+      url:  'https://github.com/it-is-known/known-languages.git',
+    }
+  },
+  languages: load_languages,
+}
